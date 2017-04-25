@@ -54,11 +54,8 @@ def grab_students_from_file(path):
     OUTPUT: list
         - list of student names
     '''
-    students = []
     with open(path, 'r') as f:
-        for line in f:
-            students.append(line.strip().split(',')[-1])
-    return students
+        return [line.strip().split(',')[-1] for line in f]
 
 
 def main():

@@ -33,15 +33,10 @@ def show_groups(student_list, number_of_groups, labels=None):
     if labels:
         assert len(labels) == number_of_groups, "should have same number of groups and labels"
     grouped = make_groups(student_list, number_of_groups)
-    o_line = '{}, ' * 5
-    o_line = o_line.strip(', ')
-    for i, group in enumerate(grouped):
-        if labels:
-            print '{}:'.format(labels[i])
-        else:
-            print 'Group #{}:'.format(i+1)
-        for student in group:
-            print '\t{}'.format(student)
+    labels = labels or ([''] * number_of_groups)
+    for i, (label, group) in enumerate(zip(labels, grouped), start=1):
+        print '{}:'.format(label) if label 'Group #{}:'.format(i)
+        print "".join("\t{}\n".format(student) for student in group)
 
 
 def grab_students_from_file(path):

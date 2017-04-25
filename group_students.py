@@ -13,14 +13,12 @@ def make_groups(student_list, number_of_groups):
     OUTPUT: list of lists
     '''
     assert number_of_groups >= 1, 'Number of groups must be >= 1'
-    shuffle(student_list)
-    groups = [[] for _ in range(number_of_groups)]
-    while student_list:
-        for index in range(number_of_groups):
-            groups[index].append(student_list.pop())
-            if not student_list:
-                break
-    return groups
+    indexes = list(range(len(student_list)))
+    shuffle(indexes)
+    return [
+        [student_list[j] for j in indexes[i::number_of_groups]]
+        for i in range(number_of_groups)
+    ]
 
 
 def show_groups(student_list, number_of_groups, labels=None):
